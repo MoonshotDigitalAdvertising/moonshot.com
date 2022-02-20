@@ -11,7 +11,30 @@ import Router, {useRouter} from 'next/router'
 
 const CampaignCreate = () => {
 
-  const router = useRouter()
+  const router = useRouter();
+
+  const [campaignIds, setCampaignIds] = useState([]);
+
+  useEffect(() => {
+    const url = 'http://147.182.129.43:8080/api/queryAll';
+
+    const fetchData = async () => {
+        try {
+            const response = await fetch(url);
+            const json = await response.json();
+            json = json.response;
+            var ids = [];
+            for(var i = 0; i < JSON.parse(json).length; i++){
+                ids.push(JSON.parse(json)[i].ID)
+            }
+            setCampaignIds(ids);
+        } catch (error) {
+            console.log("error", error);
+        }
+    };
+
+    fetchData();
+  }, []);
 
   return(
   <>
@@ -65,7 +88,7 @@ const CampaignCreate = () => {
       </Box>
     </Box>
         <Box sx={{ mt: 3 }}>
-            <CampaignCreateForm/>
+            <CampaignCreateForm ids={campaignIds}/>
         </Box>
       </Container>
     </Box>

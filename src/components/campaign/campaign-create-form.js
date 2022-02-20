@@ -34,7 +34,7 @@ export const CampaignCreateForm = (props) => {
     const url = 'http://147.182.129.43:8080/api/createCampaign';
 
     const data = {
-        "id": "asset2",
+        "id": values.ID,
         "name": values.Name,
         "buyer": values.Buyer,
         "seller": values.Seller,
@@ -80,6 +80,30 @@ export const CampaignCreateForm = (props) => {
             container
             spacing={3}
           >
+              <Grid
+              item
+              md={6}
+              xs={12}
+            >
+              <TextField
+                fullWidth
+                required
+                label="Capmaign ID"
+                name="ID"
+                onChange={handleChange}
+                value={values.ID || ''}
+                error={props.ids.includes(values.ID) ? true : false }
+                helperText="ID must be unique"
+                variant="outlined"
+              />
+            </Grid>
+            <Grid
+              item
+              md={6}
+              xs={12}
+            >
+              
+            </Grid>
             <Grid
               item
               md={6}
@@ -87,6 +111,7 @@ export const CampaignCreateForm = (props) => {
             >
               <TextField
                 fullWidth
+                required
                 label="Capmaign Name"
                 name="Name"
                 onChange={handleChange}
@@ -108,6 +133,7 @@ export const CampaignCreateForm = (props) => {
             >
               <TextField
                 fullWidth
+                required
                 helperText="Name of Purchaser of Ad Space"
                 label="Buyer Name"
                 name="Buyer"
@@ -123,6 +149,7 @@ export const CampaignCreateForm = (props) => {
             >
               <TextField
                 fullWidth
+                required
                 helperText="Name of Seller of Ad Space"
                 label="Seller Name"
                 name="Seller"
@@ -138,6 +165,7 @@ export const CampaignCreateForm = (props) => {
             >
               <TextField
                 fullWidth
+                required
                 label="Budget"
                 name="Budget"
                 onChange={handleChange}
@@ -160,6 +188,7 @@ export const CampaignCreateForm = (props) => {
             >
               <TextField
                 fullWidth
+                required
                 label="Click Price"
                 name="ClickPrice"
                 onChange={handleChange}
@@ -174,6 +203,7 @@ export const CampaignCreateForm = (props) => {
             >
               <TextField
                 fullWidth
+                required
                 label="Impression Price"
                 name="ImpressionPrice"
                 onChange={handleChange}
