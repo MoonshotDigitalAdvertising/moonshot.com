@@ -1,4 +1,4 @@
-import { Bar } from 'react-chartjs-2';
+import { Bar, Line } from 'react-chartjs-2';
 import { Box, Button, Card, CardContent, CardHeader, Divider, useTheme } from '@mui/material';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
@@ -15,17 +15,17 @@ export const Sales = (props) => {
         borderRadius: 4,
         categoryPercentage: 0.5,
         data: [18, 5, 19, 27, 29, 19, 20],
-        label: 'This year',
+        label: 'Campaign 1',
         maxBarThickness: 10
       },
       {
-        backgroundColor: '#EEEEEE',
+        backgroundColor: '#e53935',
         barPercentage: 0.5,
         barThickness: 12,
         borderRadius: 4,
         categoryPercentage: 0.5,
         data: [11, 20, 12, 29, 30, 25, 13],
-        label: 'Last year',
+        label: 'Campaign 2',
         maxBarThickness: 10
       }
     ],
@@ -92,7 +92,7 @@ export const Sales = (props) => {
             Last 7 days
           </Button>
         )}
-        title="Latest Sales"
+        title="Click and Impression data by campaign"
       />
       <Divider />
       <CardContent>
@@ -102,7 +102,7 @@ export const Sales = (props) => {
             position: 'relative'
           }}
         >
-          <Bar
+          <Line
             data={data}
             options={options}
           />

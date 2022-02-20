@@ -33,7 +33,7 @@ export const TotalCustomers = (props) => (
           pt: 2
         }}
       >
-        <ArrowUpwardIcon color="success" />
+        {/* <ArrowUpwardIcon color="success" />
         <Typography
           variant="body2"
           sx={{
@@ -47,7 +47,7 @@ export const TotalCustomers = (props) => (
           variant="caption"
         >
           Since last month
-        </Typography>
+        </Typography> */}
       </Box>
     </CardContent>
   </Card>

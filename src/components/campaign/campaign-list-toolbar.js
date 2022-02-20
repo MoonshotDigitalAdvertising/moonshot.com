@@ -10,8 +10,13 @@ import {
 import { Search as SearchIcon } from '../../icons/search';
 import { Upload as UploadIcon } from '../../icons/upload';
 import { Download as DownloadIcon } from '../../icons/download';
+import Router, {useRouter} from 'next/router'
 
-export const CampaignListToolbar = (props) => (
+export const CampaignListToolbar = (props) => {
+
+  const router = useRouter();
+
+  return(
   <Box {...props}>
     <Box
       sx={{
@@ -44,6 +49,7 @@ export const CampaignListToolbar = (props) => (
         <Button
           color="primary"
           variant="contained"
+          onClick={() => router.push('/campaigncreate')}
         >
           Add Campaign
         </Button>
@@ -75,4 +81,4 @@ export const CampaignListToolbar = (props) => (
       </Card>
     </Box>
   </Box>
-);
+)};

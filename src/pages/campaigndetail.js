@@ -7,9 +7,8 @@ import { CampaignListToolbar } from '../components/campaign/campaign-list-toolba
 import { DashboardLayout } from '../components/dashboard-layout';
 import {CampaignDetailsBody} from '../components/campaign/campaign-details-body';
 import {CampaignTransactions} from '../components/campaign/campaign-transactions'
-import { customers } from '../__mocks__/customers';
 import { useEffect, useState } from 'react';
-import Router, {useRouter} from 'next/router'
+import {useRouter} from 'next/router'
 
 const CampaignDetail = () => {
 
@@ -106,6 +105,7 @@ const CampaignDetail = () => {
         <Button
           color="primary"
           variant="contained"
+          onClick={() => router.push('/campaigncreate')}
         >
           Add New Campaign
         </Button>

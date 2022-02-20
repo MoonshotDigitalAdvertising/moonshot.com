@@ -9,8 +9,39 @@ import {
     Typography,
     LinearProgress
   } from '@mui/material';
+  import {useRouter} from 'next/router'
   
-  export const CampaignDetailsBody = (props) => (
+  export const CampaignDetailsBody = (props) => {
+
+    const router = useRouter()
+
+    const deleteCampaign = () => {
+      const url = 'http://147.182.129.43:8080/api/deleteCampaign';
+
+      const data = {
+          "id" : props.campaign.ID
+      }
+
+      const deleteRequest = async () => {
+          try {
+              const response = await fetch(url,{
+                  method: 'DELETE',
+                  headers: {'Content-Type': 'application/json'},
+                  body: JSON.stringify(data)
+              });
+              const json = await response.json();
+              json = json.response;
+              console.log(json);
+          } catch (error) {
+              console.log("error", error);
+          }
+      };
+
+      deleteRequest();
+      window.location = '/'
+    }
+
+    return(
     <Card {...props}>
       <CardContent>
         <Box
@@ -150,15 +181,20 @@ import {
         <Button
           color="primary"
           variant="text"
+          onClick={() => router.push({
+            pathname: '/campaignedit', 
+            query: {campaignid: props.campaign.ID}})}
         >
           Edit Campaign
         </Button>
         <Button
           color="error"
           variant="text"
+          onClick={() => deleteCampaign()}
         >
           Delete Campaign
         </Button>
       </CardActions>
     </Card>
-  );
+    )
+  };

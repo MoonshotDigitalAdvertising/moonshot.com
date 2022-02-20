@@ -30,14 +30,14 @@ export const Budget = (props) => (
         </Grid>
         
       </Grid>
-      <Box
+       <Box
         sx={{
           pt: 2,
           display: 'flex',
           alignItems: 'center'
         }}
       >
-        <ArrowDownwardIcon color="error" />
+        {/*<ArrowDownwardIcon color="error" />
         <Typography
           color="error"
           sx={{
@@ -52,8 +52,8 @@ export const Budget = (props) => (
           variant="caption"
         >
           Since last month
-        </Typography>
-      </Box>
+        </Typography>*/}
+      </Box> 
     </CardContent>
   </Card>
 );

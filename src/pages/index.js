@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import { Box, Container, Grid } from '@mui/material';
+import { Box, Container, Grid, Typography } from '@mui/material';
 import { Budget } from '../components/dashboard/budget';
 import { LatestOrders } from '../components/dashboard/latest-orders';
 import { LatestProducts } from '../components/dashboard/latest-products';
@@ -69,16 +69,36 @@ const Dashboard = () => {
         py: 8
       }}
     >
+      <Box
+            sx={{
+              alignItems: 'center',
+              display: 'flex',
+              justifyContent: 'space-between',
+              flexWrap: 'wrap',
+              p: 2,
+              marginTop: -7
+            }}
+          >
+            <Typography
+              sx={{ m: 2 }}
+              variant="h4"
+            >
+              Campaign Summary Dashboard
+            </Typography>
+          </Box>
       <Container maxWidth={false}>
+      
         <Grid
           container
           spacing={3}
         >
+          
+
           <Grid
             item
+            xl={3}
             lg={3}
             sm={6}
-            xl={3}
             xs={12}
           >
             <Budget totalbudget={budget}/>
@@ -135,7 +155,7 @@ const Dashboard = () => {
             xl={3}
             xs={12}
           >
-            <LatestProducts sx={{ height: '100%' }} />
+            {/* <LatestProducts sx={{ height: '100%' }} /> */}
           </Grid>
           <Grid
             item
@@ -144,7 +164,7 @@ const Dashboard = () => {
             xl={9}
             xs={12}
           >
-            <LatestOrders />
+            {/* <LatestOrders /> */}
           </Grid>
         </Grid>
       </Container>
