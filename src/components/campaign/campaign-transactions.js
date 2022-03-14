@@ -14,12 +14,13 @@ import {
   TableHead,
   TablePagination,
   TableRow,
-  Typography
+  CircularProgress
 } from '@mui/material';
   
   
   export const CampaignTransactions = (props) => {
 
+    const [isLoadingHistory, setIsLoadingHistory] = useState(false);
     const [txns, setTxns] = useState([])
     const [limit, setLimit] = useState(10);
     const [page, setPage] = useState(0);
@@ -30,10 +31,12 @@ import {
       const fetchData = async () => {
           try {
               //get one campaign
+              setIsLoadingHistory(true);
               const response = await fetch(url);
               const json = await response.json();
               json = json.response;
               setTxns(JSON.parse(json));
+              setIsLoadingHistory(false);
           } catch (error) {
               console.log("error", error);
           }
@@ -77,6 +80,9 @@ import {
                   </TableCell>
                 </TableRow>
               </TableHead>
+              { isLoadingHistory ?
+              <CircularProgress></CircularProgress>
+              :
               <TableBody>
                 {txns.slice(0, limit).map((txn) => {
                   var date = new Date(txn.LastUpdated).toLocaleString();
@@ -108,6 +114,7 @@ import {
                   </TableRow>
                 )})}
               </TableBody>
+              }
             </Table>
           </Box>
         </PerfectScrollbar>
