@@ -16,7 +16,7 @@ import {
     const router = useRouter()
 
     const deleteCampaign = () => {
-      const url = 'http://147.182.129.43:8080/api/deleteCampaign';
+      const url = `http://147.182.129.43:8080/api/endCampaign/${props.campaign.ID}`;
 
       const data = {
           "id" : props.campaign.ID
@@ -25,7 +25,7 @@ import {
       const deleteRequest = async () => {
           try {
               const response = await fetch(url,{
-                  method: 'DELETE',
+                  method: 'GET',
                   headers: {'Content-Type': 'application/json'},
                   body: JSON.stringify(data)
               });

@@ -18,22 +18,16 @@ const CampaignDetail = () => {
   const [campaign, setCampaign] = useState({});
 
   useEffect(() => {
-    const url = 'http://147.182.129.43:8080/api/queryAll';
+    const url = `http://147.182.129.43:8080/api/campaign/${campaignid}`;
 
     const fetchData = async () => {
         try {
+            //get one campaign
             const response = await fetch(url);
             const json = await response.json();
             json = json.response;
-            for(var i = 0; i < JSON.parse(json).length; i++){
-                if(JSON.parse(json)[i].ID === campaignid){
-                    console.log("ids are equal")
-                    console.log(JSON.parse(json)[i]);
-                    setCampaign(JSON.parse(json)[i])
-                }
-              }
-            
-            console.log(campaign);
+            setCampaign(JSON.parse(json))
+            console.log(campaign)
         } catch (error) {
             console.log("error", error);
         }
@@ -85,7 +79,7 @@ const CampaignDetail = () => {
         variant="h4"
         
       >
-        Campaign {campaignid}
+        Campaign - {campaignid}
       </Typography>
         </Box>
         
@@ -115,7 +109,7 @@ const CampaignDetail = () => {
             <CampaignDetailsBody campaign={campaign}/>
         </Box>
         <Box sx={{ mt: 3 }}>
-            <CampaignTransactions campaign={campaign}/>
+            <CampaignTransactions campaign={campaignid}/>
         </Box>
       </Container>
     </Box>

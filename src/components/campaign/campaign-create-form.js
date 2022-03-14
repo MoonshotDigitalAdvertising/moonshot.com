@@ -41,7 +41,7 @@ export const CampaignCreateForm = (props) => {
         "budget": values.Budget,
         "clickPrice": values.ClickPrice,
         "impressionPrice": values.ImpressionPrice,
-        "status": "ACTIVE"
+        //"status": "ACTIVE"
     }
 
     const fetchData = async () => {

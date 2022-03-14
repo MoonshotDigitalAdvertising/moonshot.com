@@ -95,50 +95,53 @@ export const CampaignListResults = ({ campaigns, ...rest }) => {
                   Seller
                 </TableCell>
                 <TableCell>
+                  Created On
+                </TableCell>
+                <TableCell>
                   Status
                 </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              {campaigns.slice(0, limit).map((campaign) => (
-                <TableRow
-                  hover
-                  key={campaign.ID}
-                  selected={selectedCampaignIds.indexOf(campaign.ID) !== -1}
-                  onClick={() => router.push({
-                    pathname: '/campaigndetail', 
-                    query: {campaignid: campaign.ID}})}
-                >
-                  <TableCell padding="checkbox">
-                    <Checkbox
-                      checked={selectedCampaignIds.indexOf(campaign.ID) !== -1}
-                      onChange={(event) => handleSelectOne(event, campaign.ID)}
-                      value="true"
-                    />
-                  </TableCell>
-                  <TableCell>
-                    
-                    <Typography
-                      color="textPrimary"
-                      variant="body1"
-                    >
+              {campaigns.slice(0, limit).map((campaign) => {
+                var date = new Date(campaign.CreatedOnDate).toLocaleString();
+                return(
+                  <TableRow
+                    hover
+                    key={campaign.ID}
+                    selected={selectedCampaignIds.indexOf(campaign.ID) !== -1}
+                    onClick={() => router.push({
+                      pathname: '/campaigndetail', 
+                      query: {campaignid: campaign.ID}})}
+                  >
+                    <TableCell padding="checkbox">
+                      <Checkbox
+                        checked={selectedCampaignIds.indexOf(campaign.ID) !== -1}
+                        onChange={(event) => handleSelectOne(event, campaign.ID)}
+                        value="true"
+                      />
+                    </TableCell>
+                    <TableCell>
                       {campaign.ID}
-                    </Typography>
-                  </TableCell>
-                  <TableCell>
-                    {campaign.Name}
-                  </TableCell>
-                  <TableCell>
-                    {campaign.Buyer}
-                  </TableCell>
-                  <TableCell>
-                    {campaign.Seller}
-                  </TableCell>
-                  <TableCell>
-                    {campaign.Status}
-                  </TableCell>
-                </TableRow>
-              ))}
+                    </TableCell>
+                    <TableCell>
+                      {campaign.Name}
+                    </TableCell>
+                    <TableCell>
+                      {campaign.Buyer}
+                    </TableCell>
+                    <TableCell>
+                      {campaign.Seller}
+                    </TableCell>
+                    <TableCell>
+                      {date}
+                    </TableCell>
+                    <TableCell>
+                      {campaign.Status}
+                    </TableCell>
+                  </TableRow>
+                )}
+              )}
             </TableBody>
           </Table>
         </Box>

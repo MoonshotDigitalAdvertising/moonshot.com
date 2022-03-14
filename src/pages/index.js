@@ -46,7 +46,6 @@ const Dashboard = () => {
             setImpressions(totalImpression);
             setPurchases(totalPurchases);
             setCampaigns(JSON.parse(json));
-            console.log(campaigns);
         } catch (error) {
             console.log("error", error);
         }
@@ -59,7 +58,7 @@ const Dashboard = () => {
   <>
     <Head>
       <title>
-        Dashboard | Mooonshot Digital Advertising
+        Dashboard
       </title>
     </Head>
     <Box
@@ -128,7 +127,10 @@ const Dashboard = () => {
             sm={6}
             xs={12}
           >
-            <TotalProfit sx={{ height: '100%' }} totalpurchases={purchases}/>
+            <TotalProfit 
+              sx={{ height: '100%' }} 
+              totalpurchases={purchases}
+            />
           </Grid>
           <Grid
             item
