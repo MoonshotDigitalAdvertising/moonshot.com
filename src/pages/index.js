@@ -33,21 +33,18 @@ const Dashboard = () => {
             const response = await fetch(url);
             const json = await response.json();
             json = json.response;
-            //console.log(JSON.parse(json).length);
             var Budget = 0;
             var TotalBudget = 0;
             var totalClick = 0;
             var totalImpression = 0;
             var totalPurchases = 0;
             for(var i = 0; i < JSON.parse(json).length; i++){
-              //console.log(JSON.parse(json)[i]);
               Budget += parseFloat(JSON.parse(json)[i]['Budget']);
               TotalBudget += parseFloat(JSON.parse(json)[i]['TotalBudget']);
               totalClick += parseInt(JSON.parse(json)[i]['ClickCount']);
               totalImpression += parseInt(JSON.parse(json)[i]['ImpressionCount']);
               totalPurchases += parseInt(JSON.parse(json)[i]['PurchaseCount']);
             }
-            //console.log(totalBudget);
             setBudget(Budget.toFixed(4));
             setTotalBudget(TotalBudget.toFixed(2));
             setClicks(totalClick);
@@ -163,7 +160,7 @@ const Dashboard = () => {
               xl={9}
               xs={12}
             >
-              <CardTile title={"Click Through Rate"} body={impressions === 0 ? '0%' : (clicks/impressions).toString().concat('%')}/>
+              <CardTile title={"Click Through Rate"} body={impressions === 0 ? '0%' : ((clicks/impressions * 100).toFixed(2)).toString().concat('%')}/>
             </Grid>
             <Grid
               item

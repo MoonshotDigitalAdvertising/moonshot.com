@@ -26,13 +26,10 @@ const CampaignEdit = () => {
             json = json.response;
             for(var i = 0; i < JSON.parse(json).length; i++){
                 if(JSON.parse(json)[i].ID === campaignid){
-                    //console.log("ids are equal")
-                    //console.log(JSON.parse(json)[i]);
                     setCampaign(JSON.parse(json)[i])
                 }
               }
             
-            //console.log(campaign);
         } catch (error) {
             console.log("error", error);
         }

@@ -27,7 +27,6 @@ const CampaignDetail = () => {
             const json = await response.json();
             json = json.response;
             setCampaign(JSON.parse(json))
-            console.log(campaign)
         } catch (error) {
             console.log("error", error);
         }
@@ -85,16 +84,10 @@ const CampaignDetail = () => {
         
       <Box sx={{ m: 1 }}>
         <Button
-          startIcon={(<UploadIcon fontSize="small" />)}
-          sx={{ mr: 1 }}
-        >
-          Import
-        </Button>
-        <Button
           startIcon={(<DownloadIcon fontSize="small" />)}
           sx={{ mr: 1 }}
         >
-          Export
+          Download Data
         </Button>
         <Button
           color="primary"
