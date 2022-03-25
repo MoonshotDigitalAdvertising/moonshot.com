@@ -27,12 +27,9 @@ export const CampaignEditForm = (props) => {
       ...values,
       [event.target.name]: event.target.value
     });
-    console.log(values);
   };
 
   const onSubmit = (event) => {
-    console.log(values);
-
     const url = 'http://147.182.129.43:8080/api/updateCampaign';
     const additionalBudget = parseInt(values.TotalBudget) - parseInt(originalTotalBudget);
 
@@ -56,7 +53,6 @@ export const CampaignEditForm = (props) => {
             });
             const json = await response.json();
             json = json.response;
-            console.log(json);
         } catch (error) {
             console.log("error", error);
         }

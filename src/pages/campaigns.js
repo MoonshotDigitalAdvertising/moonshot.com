@@ -19,7 +19,6 @@ const Campaigns = () => {
             const json = await response.json();
             json = json.response;
             setCampaigns(JSON.parse(json));
-            console.log(campaigns);
         } catch (error) {
             console.log("error", error);
         }
