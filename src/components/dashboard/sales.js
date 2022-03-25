@@ -6,30 +6,37 @@ import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 export const Sales = (props) => {
   const theme = useTheme();
 
+  var dataSets = [];
+
+  for(let i = 0; i < props.labels.length; i++){
+    console.log(props.labels[i])
+    console.log(props.clicks[i])
+    console.log(props.impressions[i]) 
+  }
+  dataSets.push({
+    backgroundColor: '#3F51B5',
+    barPercentage: 0.5,
+    barThickness: 50,
+    borderRadius: 4,
+    categoryPercentage: 0.5,
+    data: [props.clicks],
+    label: 'Clicks',
+    maxBarThickness: 50
+  });
+  dataSets.push({
+    backgroundColor: '#e53935',
+    barPercentage: 0.5,
+    barThickness: 50,
+    borderRadius: 4,
+    categoryPercentage: 0.5,
+    data: [props.impressions],
+    label: 'Impressions',
+    maxBarThickness: 50
+  });
+
   const data = {
-    datasets: [
-      {
-        backgroundColor: '#3F51B5',
-        barPercentage: 0.5,
-        barThickness: 12,
-        borderRadius: 4,
-        categoryPercentage: 0.5,
-        data: [18, 5, 19, 27, 29, 19, 20],
-        label: 'Campaign 1',
-        maxBarThickness: 10
-      },
-      {
-        backgroundColor: '#e53935',
-        barPercentage: 0.5,
-        barThickness: 12,
-        borderRadius: 4,
-        categoryPercentage: 0.5,
-        data: [11, 20, 12, 29, 30, 25, 13],
-        label: 'Campaign 2',
-        maxBarThickness: 10
-      }
-    ],
-    labels: ['1 Aug', '2 Aug', '3 Aug', '4 Aug', '5 Aug', '6 Aug', '7 aug']
+    datasets: dataSets,
+    labels: props.labels
   };
 
   const options = {
@@ -102,7 +109,7 @@ export const Sales = (props) => {
             position: 'relative'
           }}
         >
-          <Line
+          <Bar
             data={data}
             options={options}
           />

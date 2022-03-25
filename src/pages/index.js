@@ -21,8 +21,11 @@ const Dashboard = () => {
   const [budget, setBudget] = useState(0);
   const [totalBudget, setTotalBudget] = useState(0);
   const [clicks, setClicks] = useState(0);
+  const [clickData, setClickData] = useState([]);
   const [impressions, setImpressions] = useState(0);
+  const [impressionData, setImpressionData] = useState([]);
   const [purchases, setPurchases] = useState(0);
+  const [timeSeriesLabels, setTimeSeriesLabels] = useState([]);
 
   useEffect(() => {
     const url = 'http://147.182.129.43:8080/api/queryAll';
@@ -36,21 +39,30 @@ const Dashboard = () => {
             var Budget = 0;
             var TotalBudget = 0;
             var totalClick = 0;
+            var labels = [];
+            var clicks = [];
             var totalImpression = 0;
+            var impressions = [];
             var totalPurchases = 0;
             for(var i = 0; i < JSON.parse(json).length; i++){
               Budget += parseFloat(JSON.parse(json)[i]['Budget']);
               TotalBudget += parseFloat(JSON.parse(json)[i]['TotalBudget']);
               totalClick += parseInt(JSON.parse(json)[i]['ClickCount']);
+              clicks.push(parseInt(JSON.parse(json)[i]['ClickCount']));
               totalImpression += parseInt(JSON.parse(json)[i]['ImpressionCount']);
+              impressions.push(parseInt(JSON.parse(json)[i]['ImpressionCount']));
               totalPurchases += parseInt(JSON.parse(json)[i]['PurchaseCount']);
+              labels.push(JSON.parse(json)[i]['Name'])
             }
             setBudget(Budget.toFixed(4));
             setTotalBudget(TotalBudget.toFixed(2));
             setClicks(totalClick);
+            setClickData(clicks);
             setImpressions(totalImpression);
+            setImpressionData(impressions);
             setPurchases(totalPurchases);
             setCampaigns(JSON.parse(json));
+            setTimeSeriesLabels(labels);
             setIsLoading(false);
         } catch (error) {
             console.log("error", error);
@@ -178,7 +190,7 @@ const Dashboard = () => {
               xl={3}
               xs={12}
             >
-              <CardTile title={"Conversion Rate"} body={clicks === 0 ? '0%' : (purchases/clicks).toString().concat('%')}/>
+              <CardTile title={"Conversion Rate"} body={clicks === 0 ? '0%' : (purchases/clicks).toFixed(2).toString().concat('%')}/>
             </Grid>
             {/* third row */}
             <Grid
@@ -188,7 +200,7 @@ const Dashboard = () => {
               xl={9}
               xs={12}
             >
-              <Sales />
+              <Sales clicks={clickData} impressions={impressionData} labels={timeSeriesLabels}/>
             </Grid>
             <Grid
               item

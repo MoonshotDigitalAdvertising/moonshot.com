@@ -68,7 +68,7 @@ import { CampaignBarChart } from './campaign-bar-chart';
           md={12}
           xl={3}
           xs={12}>
-            <CampaignBarChart campaign={props.campaign} txns={txns}/>
+            <CampaignBarChart campaign={props.campaign} txns={txns} loading={isLoadingHistory}/>
         </Grid>
         <Grid 
           item
@@ -76,7 +76,7 @@ import { CampaignBarChart } from './campaign-bar-chart';
           md={12}
           xl={9}
           xs={12}>
-            <CampaignTimeSeries campaign={props.campaign} txns={txns}/>
+            <CampaignTimeSeries campaign={props.campaign} txns={txns} loading={isLoadingHistory}/>
         </Grid>
         </Grid>
         <Card style={{margin: 25}}>
@@ -171,7 +171,7 @@ import { CampaignBarChart } from './campaign-bar-chart';
                         {txn.LastTxn.PageTime}
                       </TableCell>
                       <TableCell>
-                        Txn Type
+                        {txn.LastTxn.TxnType}
                       </TableCell>
                     </TableRow>
                   )})}

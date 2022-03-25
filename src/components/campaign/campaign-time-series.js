@@ -1,5 +1,5 @@
 import { Bar, Line } from 'react-chartjs-2';
-import { Box, Button, Card, CardContent, CardHeader, Divider, useTheme, Grid } from '@mui/material';
+import { Box, Button, Card, CardContent, CardHeader, Divider, useTheme, CircularProgress } from '@mui/material';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 
@@ -15,14 +15,16 @@ export const CampaignTimeSeries = (props) => {
       if(!label.includes(date.toDateString())){
         label.push(date.toDateString());
 
-        props.txns[i].LastTxn.TxnType === "CLICK" ?
-        clickData[label.indexOf(date.toDateString())] = 0 : impressionData[label.indexOf(date.toDateString())] = 0
+        clickData[label.indexOf(date.toDateString())] = 0 
+        impressionData[label.indexOf(date.toDateString())] = 0
       }
+      console.log(clickData)
+      console.log(impressionData)
       switch(props.txns[i].LastTxn.TxnType){
           case "CLICK":
             clickData[label.indexOf(date.toDateString())] += 1
             break;
-          case "IMPRESSION":
+          case "IMPRESSION" || "IMPRESION":
             impressionData[label.indexOf(date.toDateString())] += 1
             break;
           default:
@@ -30,6 +32,8 @@ export const CampaignTimeSeries = (props) => {
             break;
       }
   }
+  //console.log(clickData);
+  //console.log(impressionData);
 
   const data = {
     datasets: [
@@ -39,7 +43,7 @@ export const CampaignTimeSeries = (props) => {
         barThickness: 12,
         borderRadius: 4,
         categoryPercentage: 0.5,
-        data: clickData,
+        data: clickData.reverse(),
         label: 'Clicks',
         maxBarThickness: 10
       },
@@ -49,12 +53,12 @@ export const CampaignTimeSeries = (props) => {
         barThickness: 12,
         borderRadius: 4,
         categoryPercentage: 0.5,
-        data: impressionData,
+        data: impressionData.reverse(),
         label: 'Impressions',
         maxBarThickness: 10
       }
     ],
-    labels: label
+    labels: label.reverse()
   };
 
   const options = {
@@ -64,6 +68,7 @@ export const CampaignTimeSeries = (props) => {
     legend: { display: false },
     maintainAspectRatio: false,
     responsive: true,
+    scales: {yAxes: {beginAtZero: true}},
     xAxes: [
       {
         ticks: {
@@ -107,6 +112,10 @@ export const CampaignTimeSeries = (props) => {
   };
 
   return (
+    <div>
+      { props.loading ?
+      <CircularProgress></CircularProgress>
+      :
     <Card {...props}>
       <CardHeader
         action={(
@@ -150,5 +159,7 @@ export const CampaignTimeSeries = (props) => {
         </Button>
       </Box>
     </Card>
+}
+    </div>
   );
 };

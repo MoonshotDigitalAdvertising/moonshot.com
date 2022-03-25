@@ -37,6 +37,8 @@ import {
       window.location = '/'
     }
 
+    const spend = props.campaign.TotalBudget - props.campaign.Budget
+
     return(
       <>
     <Card {...props}>
@@ -202,7 +204,7 @@ import {
   <Grid
     container
     spacing={3}
-    style={{marginTop: 10}}
+    style={{marginTop: 10, display: 'flex'}}
   >
     <Grid
     item
@@ -211,7 +213,7 @@ import {
     sm={4}
     xs={6}
   >
-    <CardTile title="Click Through Rate" body={0}/>
+    <CardTile title="Click Through Rate" body={(props.campaign.ClickCount/props.campaign.ImpressionCount).toFixed(2)}/>
   </Grid>
   <Grid
     item
@@ -220,7 +222,7 @@ import {
     sm={4}
     xs={6}
   >
-    <CardTile title={`Conversion Rate`} body={0}/>
+    <CardTile title={`Conversion Rate`} body={(props.campaign.PurchaseCount/props.campaign.ClickCount*100).toFixed(2)}/>
   </Grid>
   <Grid
     item
@@ -229,7 +231,7 @@ import {
     sm={4}
     xs={6}
   >
-    <CardTile title="CPC" body={0}/>
+    <CardTile title="Cost Per Click" body={`$${(spend/props.campaign.ClickCount).toFixed(2)}`}/>
   </Grid>
   <Grid
     item
@@ -238,7 +240,7 @@ import {
     sm={4}
     xs={6}
   >
-    <CardTile title="ACOS" body={0}/>
+    <CardTile title="ACOS" body={`${(spend/props.campaign.PurchaseAmount).toFixed(2)}`}/>
   </Grid>
   <Grid
     item
@@ -247,7 +249,7 @@ import {
     sm={4}
     xs={6}
   >
-    <CardTile title="ROAS" body={0}/>
+    <CardTile title="ROAS" body={`${(props.campaign.PurchaseAmount/spend).toFixed(2)}`}/>
   </Grid>
   <Grid
     item
@@ -256,7 +258,7 @@ import {
     sm={4}
     xs={6}
   >
-    <CardTile title="Purchase Amount" body={0}/>
+    <CardTile title="Purchase Amount" body={props.campaign.PurchaseAmount}/>
   </Grid>
   </Grid>
   </>

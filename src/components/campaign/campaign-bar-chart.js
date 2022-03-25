@@ -1,5 +1,5 @@
 import { Bar, Line } from 'react-chartjs-2';
-import { Box, Button, Card, CardContent, CardHeader, Divider, useTheme, Grid } from '@mui/material';
+import { Box, Button, Card, CardContent, CardHeader, Divider, useTheme, CircularProgress } from '@mui/material';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 
@@ -28,7 +28,7 @@ export const CampaignBarChart = (props) => {
         categoryPercentage: 0.5,
         data: browserData,
         label: 'Clicks and Impressions',
-        maxBarThickness: 10
+        maxBarThickness: 100
       },
     ],
     labels: label
@@ -82,8 +82,12 @@ export const CampaignBarChart = (props) => {
       titleFontColor: theme.palette.text.primary
     }
   };
-
-  return (
+return(
+  <div>
+  {props.loading ?
+    <CircularProgress></CircularProgress>
+    :
+  (
     <Card {...props}>
       <CardHeader
         action={(
@@ -127,5 +131,6 @@ export const CampaignBarChart = (props) => {
         </Button>
       </Box>
     </Card>
-  );
+  )}
+  </div>)
 };

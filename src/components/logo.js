@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
+import {Image } from '@mui/material'
 
 export const Logo = styled((props) => {
   const { variant, ...other } = props;
