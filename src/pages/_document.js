@@ -31,7 +31,7 @@ class CustomDocument extends Document {
           />
           <link
             rel="icon"
-            href="/favicon.ico"
+            href="/logo-01-sm.ico"
           />
           <link
             rel="icon"
