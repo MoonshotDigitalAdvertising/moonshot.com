@@ -1,3 +1,5 @@
+This repository is property of Spencer Jensen. Any use is prohibited without consent.
+
 # moonshot.com
 Main website for Moonshot Blockchain Advertising
 
